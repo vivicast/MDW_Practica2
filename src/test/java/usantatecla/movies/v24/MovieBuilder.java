@@ -17,7 +17,7 @@ public class MovieBuilder {
 	}
 	
 	public MovieBuilder childrens() {
-		this.price = new ChildrenPrice();
+		//this.price = new ChildrenPrice();
 		return this;
 	}
 	
