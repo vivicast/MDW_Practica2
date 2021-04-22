@@ -22,7 +22,7 @@ public class MovieBuilder {
 	}
 	
 	public MovieBuilder regular() {
-		this.price = new RegularPrice();
+		//this.price = new RegularPrice();
 		return this;
 	}
 	
