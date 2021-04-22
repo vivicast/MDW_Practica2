@@ -1,49 +1,49 @@
 package usantatecla.movies.v22;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Customer {
 
-	private String name;
-	
-	private List<Rental> rentals;
+    private String name;
 
-	public Customer(String name) {
-		this.name = name;
-		rentals = new ArrayList<Rental>();
-	}
+    private List<Rental> rentals;
 
-	public void addRental(Rental rental) {
-		rentals.add(rental);
-	}
+    public Customer(String name) {
+        this.name = name;
+        this.rentals = new ArrayList<>();
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void addRental(Rental rental) {
+        rentals.add(rental);
+    }
 
-	public String statement() {
-		Iterator<Rental> rentals = this.rentals.iterator();
-		String result = "Rental Record for " + this.getName() + "\n";
-		while (rentals.hasNext()) {
-			Rental each = rentals.next();
-			result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-		}
-		result += "Amount owed is " + String.valueOf(this.getTotalCharge()) + "\n";
-		result += "You earned " + String.valueOf(this.getTotalFrequentRenterPoints()) + " frequent renter points";
-		return result;
-	}
+    public String getName() {
+        return name;
+    }
 
-	private double getTotalCharge() {
-		return this.rentals.stream()
-				.map(Rental::getCharge)
-				.reduce(0.0, Double::sum);
-	}
-	
-	private int getTotalFrequentRenterPoints() {
-		return this.rentals.stream()
-				.map(Rental::getFrequentRenterPoints)
-				.reduce(0, Integer::sum);
-	}
+    public String statement() {
+        String result = statementTitle();
+        result += "Amount owed is " + this.getTotalCharge() + "\n";
+        result += "You earned " + this.getTotalFrequentRenterPoints() + " frequent renter points";
+        return result;
+    }
+
+    private String statementTitle() {
+        return this.rentals.stream()
+                .map(rental -> "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n")
+                .reduce("Rental Record for " + this.getName() + "\n", (s1, s2) -> s1 + s2);
+    }
+
+    private double getTotalCharge() {
+        return this.rentals.stream()
+                .map(Rental::getCharge)
+                .reduce(0.0, Double::sum);
+    }
+
+    private int getTotalFrequentRenterPoints() {
+        return this.rentals.stream()
+                .map(Rental::getFrequentRenterPoints)
+                .reduce(0, Integer::sum);
+    }
 }
