@@ -5,8 +5,7 @@ public class MovieBuilder {
 
 	private String title;
 	
-	private Price price;
-	
+
 	public MovieBuilder() {
 		title = "movieName";
 	}
