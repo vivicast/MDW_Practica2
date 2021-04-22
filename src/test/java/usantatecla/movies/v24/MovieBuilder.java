@@ -2,35 +2,35 @@ package usantatecla.movies.v24;
 
 
 public class MovieBuilder {
-
 	private String title;
-	
+
+	private Movie movie;
 
 	public MovieBuilder() {
 		title = "movieName";
 	}
-	
+
 	public MovieBuilder title(String title) {
-		this.title = title;
+		this.movie.setTitle(title);
 		return this;
 	}
-	
+
 	public MovieBuilder childrens() {
-		//this.price = new ChildrenPrice();
+		this.movie = new ChildrenMovie(title);
 		return this;
 	}
-	
+
 	public MovieBuilder regular() {
-		//this.price = new RegularPrice();
+		this.movie = new RegularMovie(title);
 		return this;
 	}
-	
+
 	public MovieBuilder newRelease() {
-		//this.price = new NewReleasePrice();
+		this.movie = new NewReleaseMovie(title);
 		return this;
 	}
-	
-	//public Movie build() {
-	//	return new Movie(title, price);
-	//}
+
+	public Movie build() {
+		return movie;
+	}
 }
