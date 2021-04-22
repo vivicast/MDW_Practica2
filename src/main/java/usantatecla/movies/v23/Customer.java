@@ -31,7 +31,7 @@ public class Customer {
 
     private String statementTitle() {
         return this.rentals.stream()
-                .map(rental -> "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n")
+                .map(rental -> "\t" + rental.getTitleMovie() + "\t" + rental.getCharge() + "\n")
                 .reduce("Rental Record for " + this.getName() + "\n", (s1, s2) -> s1 + s2);
     }
 
