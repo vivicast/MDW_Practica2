@@ -27,11 +27,11 @@ public class MovieBuilder {
 	}
 	
 	public MovieBuilder newRelease() {
-		this.price = new NewReleasePrice();
+		//this.price = new NewReleasePrice();
 		return this;
 	}
 	
-	public Movie build() {
-		return new Movie(title, price);
-	}
+	//public Movie build() {
+	//	return new Movie(title, price);
+	//}
 }
